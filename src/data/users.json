@@ -1,0 +1,24 @@
+[
+    {
+        "id":  1,
+        "name": "admin",
+        "email": "admin@hoa.com",
+        "pwd": "123",
+        "building": "A",
+        "adress": "My st., 1",
+        "city": "My city",
+        "tel": "0123456789",
+        "committee": true
+    },
+    {
+        "id":  2,
+        "name": "user",
+        "email": "user@hoa.com",
+        "pwd": "abc",
+        "building": "B",
+        "adress": "My st., 2",
+        "city": "My city",
+        "tel": "9876543210",
+        "committee": false
+    }
+]

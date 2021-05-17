@@ -12,25 +12,44 @@ import Tenants from './pages/Tenants';
 import Voting from './pages/Voting';
 import HoaNavbar from './components/HoaNavbar';
 import { Container } from 'react-bootstrap';
+import userJSON from './data/users.json'
 
 class App extends React.Component {
   constructor(props){
     super(props);
+    let usersData = [];
+    if (localSrorage['allUsers']) {usersData = localStorage['allUsers'];}
+    else {usersData = userJSON}
     this.state = {
-      // activeUser: null
-      activeUser: {
-        id:  1,
-        name: 'Admin',
-        email: 'admin@hoa.com',
-        pwd: '123',
-        // building: 'A',
-        // adress: 'My st., 1',
-        // city: 'My city',
-        // tel: '0123456789'
-      }
+      activeUser: null,
+      allUsers: userJSON,
+      // activeUser: {
+      //   id:  1,
+      //   name: 'Admin',
+      //   email: 'admin@hoa.com',
+      //   pwd: '123',
+      //   building: 'A',
+      //   adress: 'My st., 1',
+      //   city: 'My city',
+      //   tel: '0123456789'
+      // }
     }
   }
-  logout = () => {
+  signup = (newUser) => {
+    this.setState({
+      activeUser: newUser,
+      allUsers: this.state.allUsers.concat(newUser)
+    });
+    localStorage['allUsers'] = localStorage['allUsers'].push(newUser);
+  }
+
+  login = (userObj) => {
+    this.setState({
+      activeUser: userObj,
+    })
+  }
+
+  handleLogout = () => {
     this.setState({
       activeUser: null,
     });
@@ -38,19 +57,21 @@ class App extends React.Component {
 
   render() {
   return (
-    <Container>
       <HashRouter>
         <Route exact path={[ "/", "/dashboard", "/issues", "/messages", "/tenants", "/voting" ]}>
           <HoaNavbar 
             activeUser={this.state.activeUser}
-            logout={this.logout}
-            />
+            handleLogout={this.handleLogout}
+            ></HoaNavbar>
         </Route>
+        <Container>
           <Route exact path="/">
             <Homepage></Homepage>
           </Route>
           <Route exact path="/login">
-            <Login></Login>
+            <Login 
+              allUsers={this.state.allUsers}
+              login={this.login} />
           </Route>
           <Route exact path="/signup">
             <Signup></Signup>
@@ -70,8 +91,8 @@ class App extends React.Component {
           <Route exact path="/voting">
             <Voting activeUser={this.state.activeUser}></Voting>
           </Route>
+        </Container>
       </HashRouter>
-    </Container>
     );
   }
 }

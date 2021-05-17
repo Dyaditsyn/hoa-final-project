@@ -6,6 +6,33 @@ import { Link } from 'react-router-dom';
 class Login extends React.Component {
     constructor(props){
         super(props)
+        this.state = {
+            email: '',
+            pwd: '',
+        }
+    }
+    updatePwd = (event) => {
+        this.setState({
+            pwd: event.target.value
+        });
+    }
+    updateEmail = (event) => {
+        this.setState({
+            email: event.target.value
+        });
+    }
+    handleLogin = () => {
+        console.log(this.props.allUsers)
+        const foundUser = this.props.allUsers.find( (user) => {
+            return (user.email === this.state.email && user.pwd === this.state.pwd);
+        });
+        if(foundUser) {
+            this.props.login(foundUser);
+            window.location.href = '/#/dashboard';
+        }
+        else{
+            alert('Incorrect Email or Password');
+        }
     }
     render() {
         return (
@@ -17,7 +44,7 @@ class Login extends React.Component {
                         Email
                         </Form.Label>
                         <Col sm={10}>
-                        <Form.Control type="email" placeholder="Email" />
+                        <Form.Control type="email" placeholder="Email" onChange={this.updateEmail} value={this.state.email}/>
                         </Col>
                     </Form.Group>
 
@@ -26,12 +53,12 @@ class Login extends React.Component {
                         Password
                         </Form.Label>
                         <Col sm={10}>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" onChange={this.updatePwd} value={this.state.pwd}/>
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row}>
                         <Col sm={{ span: 10, offset: 2 }}>
-                        <Button block type="button">Log in</Button>
+                        <Button onClick={this.handleLogin} variant="success" block type="button">Log in</Button>
                         </Col>
                     </Form.Group>
                 </Form>

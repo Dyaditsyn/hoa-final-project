@@ -8,7 +8,7 @@ class HoaNavbar extends React.Component {
 
     }
     render() {
-        // tenant/commette mamber links shown only after authorization
+        // tenant/commette member links shown only after authorization
         const menuEl = (this.props.activeUser) ? 
         <Nav variant="primary" className="mr-auto">
             <Nav.Link href="/#/dashboard">Dashboard</Nav.Link>
@@ -22,8 +22,9 @@ class HoaNavbar extends React.Component {
         // after authorization switch to log out
         const loginEl = ( ! this.props.activeUser) ? <Nav.Link href="/#/login">Login</Nav.Link> : null;
         const signupEl = ( ! this.props.activeUser) ?  <Nav.Link href="/#/signup">Sign Up</Nav.Link> : null;
+        const nameEl = ( this.props.activeUser) ?  <Nav.Link disabled>Hello {this.props.activeUser.name}</Nav.Link> : null;
         const logoutEl= (this.props.activeUser) ? 
-        <Nav.Link href="/#/" onClick={ () => {this.props.logout()}}>
+        <Nav.Link href="/#/" onClick={ () => {this.props.handleLogout()} }>
             Log out
         </Nav.Link> 
         : null;
@@ -36,6 +37,7 @@ class HoaNavbar extends React.Component {
                     <Nav className="ml-auto">
                         {loginEl}
                         {signupEl}
+                        {nameEl}
                         {logoutEl}
                     </Nav>
                 </Navbar.Collapse>
