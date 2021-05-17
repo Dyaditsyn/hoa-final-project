@@ -18,7 +18,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     let usersData = [];
-    if (localSrorage['allUsers']) {usersData = localStorage['allUsers'];}
+    if (localStorage['allUsers']) {usersData = localStorage['allUsers'];}
     else {usersData = userJSON}
     this.state = {
       activeUser: null,

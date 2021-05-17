@@ -37,7 +37,7 @@ class Login extends React.Component {
     render() {
         return (
             <div className="p-login">
-                <h1>Login to Committee Member Account </h1>
+                <h1>Login to HomeOwner Assosiation Management System</h1>
                 <Form className="mt-5">
                     <Form.Group as={Row} controlId="formHorizontalEmail">
                         <Form.Label column sm={2}>
