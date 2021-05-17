@@ -10,12 +10,14 @@ import Issues from './pages/Issues';
 import Messages from './pages/Messages';
 import Tenants from './pages/Tenants';
 import Voting from './pages/Voting';
+import HoaNavbar from './components/HoaNavbar';
 
 class App extends React.Component {
 
   render() {
   return (
     <HashRouter >
+      <HoaNavbar></HoaNavbar>
         <Route exact path="/">
           <Homepage></Homepage>
         </Route>
