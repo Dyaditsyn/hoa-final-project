@@ -17,30 +17,33 @@ import userJSON from './data/users.json'
 class App extends React.Component {
   constructor(props){
     super(props);
-    let usersData = [];
-    if (localStorage['allUsers']) {usersData = localStorage['allUsers'];}
-    else {usersData = userJSON}
+    let usersData = JSON.parse(localStorage.getItem('localUsers')) || userJSON;
+    
     this.state = {
-      activeUser: null,
-      allUsers: userJSON,
-      // activeUser: {
-      //   id:  1,
-      //   name: 'Admin',
-      //   email: 'admin@hoa.com',
-      //   pwd: '123',
-      //   building: 'A',
-      //   adress: 'My st., 1',
-      //   city: 'My city',
-      //   tel: '0123456789'
-      // }
+      // activeUser: null,
+      allUsers: usersData,
+      activeUser: {
+        "id":  10,
+        "name": "admin",
+        "email": "admin@hoa.com",
+        "pwd": "123",
+        "building": "A",
+        "adress": "My st., 1",
+        "city": "My city",
+        "tel": "0123456789",
+        "role": "committee",
+        "img": "../img/admin-logo.jpg"
+      }
     }
   }
-  signup = (newUser) => {
+
+  addUser = (newUser) => {
+    const localUsersString = JSON.stringify(this.state.allUsers.concat(newUser));
+    localStorage.setItem('localUsers', localUsersString);
     this.setState({
       activeUser: newUser,
       allUsers: this.state.allUsers.concat(newUser)
     });
-    localStorage['allUsers'] = localStorage['allUsers'].push(newUser);
   }
 
   login = (userObj) => {
@@ -59,14 +62,14 @@ class App extends React.Component {
   return (
       <HashRouter>
         <Route exact path={[ "/", "/dashboard", "/issues", "/messages", "/tenants", "/voting" ]}>
-          <HoaNavbar 
+          <HoaNavbar
             activeUser={this.state.activeUser}
             handleLogout={this.handleLogout}
-            ></HoaNavbar>
+            />
         </Route>
         <Container>
           <Route exact path="/">
-            <Homepage></Homepage>
+            <Homepage/>
           </Route>
           <Route exact path="/login">
             <Login 
@@ -74,22 +77,22 @@ class App extends React.Component {
               login={this.login} />
           </Route>
           <Route exact path="/signup">
-            <Signup></Signup>
+            <Signup addUser={this.addUser}/>
           </Route>
           <Route exact path="/dashboard">
-            <Dashboard activeUser={this.state.activeUser}></Dashboard>
+            <Dashboard activeUser={this.state.activeUser}/>
           </Route>
           <Route exact path="/issues">
-            <Issues activeUser={this.state.activeUser}></Issues>
+            <Issues activeUser={this.state.activeUser}/>
           </Route>
           <Route exact path="/messages">
-            <Messages activeUser={this.state.activeUser}></Messages>
+            <Messages activeUser={this.state.activeUser}/>
           </Route>
           <Route exact path="/tenants">
-            <Tenants activeUser={this.state.activeUser}></Tenants>
+            <Tenants activeUser={this.state.activeUser}/>
           </Route>
           <Route exact path="/voting">
-            <Voting activeUser={this.state.activeUser}></Voting>
+            <Voting activeUser={this.state.activeUser}/>
           </Route>
         </Container>
       </HashRouter>

@@ -1,6 +1,6 @@
 [
     {
-        "id":  1,
+        "id":  10,
         "name": "admin",
         "email": "admin@hoa.com",
         "pwd": "123",
@@ -8,17 +8,49 @@
         "adress": "My st., 1",
         "city": "My city",
         "tel": "0123456789",
-        "committee": true
+        "role": "committee",
+        "img": "../img/admin-logo.jpg"
     },
     {
-        "id":  2,
-        "name": "user",
-        "email": "user@hoa.com",
-        "pwd": "abc",
+        "id":  11,
+        "name": "admin2",
+        "email": "admin2@hoa.com",
+        "pwd": "345",
         "building": "B",
         "adress": "My st., 2",
         "city": "My city",
+        "tel": "0123456789",
+        "role": "committee",
+        "img": "../img/admin-logo.jpg"
+    },
+    {
+        "id":  20,
+        "name": "user1",
+        "email": "user1@hoa.com",
+        "pwd": "abc",
+        "apt": "101",
         "tel": "9876543210",
-        "committee": false
+        "role": "tenant",
+        "img": "../img/user-logo.png"
+    },
+    {
+        "id":  21,
+        "name": "user2",
+        "email": "user2@hoa.com",
+        "pwd": "def",
+        "apt": "102",
+        "tel": "9876543210",
+        "role": "tenant",
+        "img": "../img/user-logo.png"
+    },
+    {
+        "id":  22,
+        "name": "user3",
+        "email": "user3@hoa.com",
+        "pwd": "jhi",
+        "apt": "103",
+        "tel": "9876543210",
+        "role": "tenant",
+        "img": "../img/user-logo.png"
     }
 ]

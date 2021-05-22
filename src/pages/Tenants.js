@@ -1,4 +1,5 @@
 import React from 'react';
+import {Container, Row, Col} from 'react-bootstrap';
 
 class Tenants extends React.Component {
     constructor(props){
@@ -9,9 +10,13 @@ class Tenants extends React.Component {
             window.location.href = "/#/login"
         }
         return (
-            <div className="p-tenants">
-                I am Tenants
-            </div>
+            <Container className="d-flex" fluid="md">
+                <Row>
+                    <Col>{this.props.activeUser.role === 'tenant' ? <></> : <div></div>}</Col>
+                    <Col></Col>
+                </Row>
+                <Row></Row>
+            </Container>
         )
     }
 }

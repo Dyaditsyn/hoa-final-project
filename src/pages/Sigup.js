@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Button, Form} from 'react-bootstrap';
 
 class Signup extends React.Component {
     constructor(props){
@@ -16,15 +16,16 @@ class Signup extends React.Component {
     }
     createUser = () => {
         const newUserObj = {
-            name: 'this.state.name',
-            email: 'this.state.email',
-            pwd: 'this.state.pwd',
-            building: 'this.state.building',
-            adress: 'this.state.adress',
-            city: 'this.state.city',
-            tel: 'this.state.tel'
+            name: this.state.name,
+            email: this.state.email,
+            pwd: this.state.pwd,
+            building: this.state.building,
+            adress: this.state.adress,
+            city: this.state.city,
+            tel: this.state.tel
         }
         this.props.addUser(newUserObj);
+        window.location.href = '/#/dashboard';
     }
     render() {
         return (

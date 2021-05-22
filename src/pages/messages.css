@@ -1,0 +1,18 @@
+.search-input {
+    position:relative
+}
+
+.search-btn {
+    position: absolute;
+    right: auto;
+}
+
+.info-icon {
+    background-image: url("../img/info-icon.png");
+    z-index: 999;
+}
+
+.important-icon {
+    background-image: url("../img/important-icon.jpg");
+    z-index: 999;
+}
