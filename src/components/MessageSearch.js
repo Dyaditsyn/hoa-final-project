@@ -27,26 +27,9 @@ class MessageSearch extends React.Component {
 
     render() {
         return (
-            // <div className="d-flex">
-            //     {/* <button onClick={() => alert(this.state.priorityFilter)} /> */}
-            //     <input value={this.state.searchQuery} onChange={this.updateSearchQuery} type="text" />
-
-            //     <select value={this.state.priorityFilter} onChange={this.updatePriorityFilter}>
-            //         <option value="">Filter by priority</option>
-            //         <option value="info">Information</option>
-            //         <option value="important">Important</option>
-            //     </select>
-
-            //     <span>Sort by:</span>
-            //     {['date', 'priority'].map(option => (<div key={option}>
-            //         <input type="radio" onChange={this.updateSortBy} checked={this.state.sortBy === option} value={option} />
-            //         <span className="text-capitalize">{option}</span>
-            //     </div>))}
-
-            // </div>
             <Row className="mb-5">
-                <Col md={12} lg={7}>
-                    <Form inline className="my-2">
+                <Col className="d-flex align-items-center" md={12} lg={7}>
+                   
                         <FormControl 
                         value={this.state.searchQuery} 
                         onChange={this.updateSearchQuery} 
@@ -54,8 +37,9 @@ class MessageSearch extends React.Component {
                         type="text" 
                         placeholder="Filter by Text in Title and Details" 
                         />
-                        <Button className="search-btn m-2" >Search</Button>
-                    </Form>
+                        
+                  
+                    <Button className="search-btn m-2" >Search</Button>
                 </Col>
                 <Form inline className="my-2">
                     <Form.Group as={Col} controlId="formGridState">

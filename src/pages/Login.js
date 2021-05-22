@@ -22,7 +22,6 @@ class Login extends React.Component {
         });
     }
     handleLogin = () => {
-        console.log(this.props.allUsers)
         const foundUser = this.props.allUsers.find( (user) => {
             return (user.email === this.state.email && user.pwd === this.state.pwd);
         });

@@ -12,28 +12,18 @@ import Tenants from './pages/Tenants';
 import Voting from './pages/Voting';
 import HoaNavbar from './components/HoaNavbar';
 import { Container } from 'react-bootstrap';
-import userJSON from './data/users.json'
+import userJSON from './data/users.json';
+
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     let usersData = JSON.parse(localStorage.getItem('localUsers')) || userJSON;
-    
+   
+
     this.state = {
-      // activeUser: null,
-      allUsers: usersData,
-      activeUser: {
-        "id":  10,
-        "name": "admin",
-        "email": "admin@hoa.com",
-        "pwd": "123",
-        "building": "A",
-        "adress": "My st., 1",
-        "city": "My city",
-        "tel": "0123456789",
-        "role": "committee",
-        "img": "../img/admin-logo.jpg"
-      }
+      activeUser: JSON.parse(localStorage.getItem('loggedInUser')) || null,
+      allUsers: usersData
     }
   }
 
@@ -46,53 +36,64 @@ class App extends React.Component {
     });
   }
 
+ 
+
   login = (userObj) => {
     this.setState({
       activeUser: userObj,
     })
+    localStorage.setItem('loggedInUser', JSON.stringify(userObj));
+
   }
 
   handleLogout = () => {
     this.setState({
       activeUser: null,
+    }, () => {
+      localStorage.setItem('loggedInUser', JSON.stringify(null));
+      window.location.href = '/#/';
     });
+
   }
 
   render() {
-  return (
+    return (
       <HashRouter>
-        <Route exact path={[ "/", "/dashboard", "/issues", "/messages", "/tenants", "/voting" ]}>
+        <Route exact path={["/", "/dashboard", "/issues", "/messages", "/tenants", "/voting"]}>
           <HoaNavbar
             activeUser={this.state.activeUser}
             handleLogout={this.handleLogout}
-            />
+          />
         </Route>
         <Container>
           <Route exact path="/">
-            <Homepage/>
+            <Homepage />
           </Route>
           <Route exact path="/login">
-            <Login 
+            <Login
               allUsers={this.state.allUsers}
               login={this.login} />
           </Route>
           <Route exact path="/signup">
-            <Signup addUser={this.addUser}/>
+            <Signup addUser={this.addUser} />
           </Route>
           <Route exact path="/dashboard">
-            <Dashboard activeUser={this.state.activeUser}/>
+            <Dashboard activeUser={this.state.activeUser} />
           </Route>
           <Route exact path="/issues">
-            <Issues activeUser={this.state.activeUser}/>
+            <Issues activeUser={this.state.activeUser} />
           </Route>
           <Route exact path="/messages">
-            <Messages activeUser={this.state.activeUser}/>
+            <Messages
+              activeUser={this.state.activeUser} />
           </Route>
           <Route exact path="/tenants">
-            <Tenants activeUser={this.state.activeUser}/>
+            <Tenants
+              activeUser={this.state.activeUser}
+              allUsers={this.state.allUsers} />
           </Route>
           <Route exact path="/voting">
-            <Voting activeUser={this.state.activeUser}/>
+            <Voting activeUser={this.state.activeUser} />
           </Route>
         </Container>
       </HashRouter>

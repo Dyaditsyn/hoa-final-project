@@ -1,18 +1,10 @@
-.search-input {
-    position:relative
+
+
+.priority-icon{
+    width: 30px;
+    height: 30px;
 }
 
-.search-btn {
-    position: absolute;
-    right: auto;
-}
-
-.info-icon {
-    background-image: url("../img/info-icon.png");
-    z-index: 999;
-}
-
-.important-icon {
-    background-image: url("../img/important-icon.jpg");
-    z-index: 999;
+.open-header{
+    background-color: aquamarine;
 }

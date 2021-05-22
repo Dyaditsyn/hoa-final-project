@@ -1,16 +1,21 @@
 import React from 'react';
-import { Accordion, Button, Card, Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Accordion, Button, Card } from 'react-bootstrap';
 import MessageSearch from '../components/MessageSearch';
 import messagesJSON from '../data/messages.json';
+import { v4 } from 'uuid';
 import './messages.css'
+import AddMessageModal from '../components/AddMessageModal';
+import clsx from 'clsx';
+import infoIcon from '../img/info-icon.png';
+import importantIcon from '../img/important-icon.jpg';
+
 
 const priority_values = { info: 1, important: 2 }
 
 class Messages extends React.Component {
     constructor(props) {
-        super(props)
-        const localMessages = JSON.parse(localStorage.getItem('localMessages')) || messagesJSON
+        super(props);
+        const localMessages = JSON.parse(localStorage.getItem('localMessages')) || messagesJSON;
 
         this.state = {
             messages: localMessages,
@@ -19,12 +24,12 @@ class Messages extends React.Component {
                 searchQuery: '',
                 priorityFilter: '',
                 sortBy: 'date'
-            }
+            },
+            isModalOpen: false,
+            currentlyOpenCard: null
         }
     }
 
-    // TODO: Make the component react to changes in searchParameters, i.e. change filteredMessages every time searchParameters changes
-    // this.setState({filteredMessages: this.getFilteredMessages()}) <--- Do this eventually, figure out when to do this
 
     getFilteredMessages = () => {
         let { messages, searchParameters } = this.state;
@@ -47,45 +52,76 @@ class Messages extends React.Component {
     }
 
     updateSearchParameters = params => {
-        this.setState({ searchParameters: params });
-        this.updateShownMessages();
+        this.setState({ searchParameters: params }, this.updateShownMessages);
     }
 
     updateShownMessages = () => {
         this.setState({ filteredMessages: this.getFilteredMessages() })
     }
 
+    handleClose = () => {
+        this.setState(
+            {
+                isModalOpen: false
+            });
+    }
+
+    saveModalInfo = ({title, details, priority, img}) => {
+        const newMessage = {
+            title,
+            details,
+            priority,
+            img,
+            userId: this.props.activeUser.id,
+            date: (new Date()).toJSON(),
+            messageId: v4()
+        }
+        localStorage.setItem('localMessages', JSON.stringify([...this.state.messages, newMessage]));
+        this.setState(prevState => ({ messages: [...prevState.messages, newMessage] }), this.updateShownMessages)
+        this.handleClose();
+    }
+
+    deleteMessage = idToDelete => {
+        const nextMessages = this.state.messages.filter(m => m.messageId !== idToDelete);
+        localStorage.setItem('localMessages', JSON.stringify(nextMessages));
+        this.setState({messages: nextMessages}, this.updateShownMessages)
+    }
+
     render() {
         if (!this.props.activeUser) {
-            window.location.href = "/#/login"
+            return window.location.href = "/#/login";
         }
-        console.log(this.state.filteredMessages);
         return (
             <div className="p-messages">
                 <MessageSearch onSearchParamsUpdate={this.updateSearchParameters} />
-                {this.props.activeUser.role === 'committee' ? 
-                <div className="text-right font-weight-bold "><Link onClick={this.addMessage} to="#">New Message</Link></div> 
-                : null}
-                <Accordion className="mt-2">
-                {this.state.filteredMessages.map(message =>
-                    <Card border="secondary" key={message.messageId}> 
-                        <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey={message.messageId}>
-                            {message.title} {message.date} {message.priority} 
-                            {message.priority === 'info' ? <div className="info-logo"></div> : <div className="important-logo"></div>}
-                            </Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey={message.messageId}>
-                            <Card.Body>{message.details} 
-                            <div className="d-flex justify-content-end">
-                                {this.props.activeUser.role === 'committee' ? <Button className="mr-2" variant="secondary">Update</Button> : null}
-                                {this.props.activeUser.role === 'committee' ? <Button className="mr-2" variant="danger">Delete</Button> : null}
-                            </div>
-                            </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>)}
+                {this.props.activeUser.role === 'committee' &&
+                    <div className="text-right "><Button variant="link" className="font-weight-bold" onClick={() => { this.setState({ isModalOpen: true }) }}>New Message</Button></div>
+                }
+                <Accordion onSelect={cardId => this.setState({currentlyOpenCard: cardId})} className="mt-2">
+                    {this.state.filteredMessages.map(message =>
+                        <Card border="secondary" key={message.messageId}>
+                            <Card.Header className={clsx({'open-header': this.state.currentlyOpenCard === message.messageId}, 'd-flex justify-content-between')}>
+                                <Accordion.Toggle as={Button} variant="link" eventKey={message.messageId}>
+                                    {message.title}
+                                </Accordion.Toggle>
+                                { <img className="priority-icon" src={message.priority === 'info' ? infoIcon : importantIcon}/>}
+                            </Card.Header>
+                            <Accordion.Collapse eventKey={message.messageId}>
+                                <Card.Body>{message.details}
+                                    <div className="d-flex justify-content-end">
+                                        {this.props.activeUser.role === 'committee' &&
+                                            <Button onClick={this.updateMessage} className="mr-2" variant="secondary">Update</Button>
+                                        }
+                                        {this.props.activeUser.role === 'committee' &&
+                                            <Button onClick={() => this.deleteMessage(message.messageId)} className="mr-2" variant="danger">Delete</Button>
+                                        }
+                                    </div>
+                                </Card.Body>
+                            </Accordion.Collapse>
+                        </Card>)}
                 </Accordion>
 
+                <AddMessageModal isModalOpen={this.state.isModalOpen} handleClose={this.handleClose} onSave={this.saveModalInfo}/>
             </div>
         )
     }

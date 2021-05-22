@@ -20,14 +20,14 @@ class HoaNavbar extends React.Component {
             : null;
         // before authorization shown only navbar brand and login/sigup options
         // after authorization switch to log out
-        const loginEl = ( ! this.props.activeUser) ? <Nav.Link href="/#/login">Login</Nav.Link> : null;
-        const signupEl = ( ! this.props.activeUser) ?  <Nav.Link href="/#/signup">Sign Up</Nav.Link> : null;
-        const nameEl = ( this.props.activeUser) ?  <Nav.Link disabled>Hello {this.props.activeUser.name}</Nav.Link> : null;
-        const logoutEl= (this.props.activeUser) ? 
-        <Nav.Link href="/#/" onClick={ () => {this.props.handleLogout()} }>
+        const loginEl = ( ! this.props.activeUser) && <Nav.Link href="/#/login">Login</Nav.Link> ;
+        const signupEl = ( ! this.props.activeUser) &&  <Nav.Link href="/#/signup">Sign Up</Nav.Link>;
+        const nameEl = ( this.props.activeUser) &&  <Nav.Link disabled>Hello {this.props.activeUser.name}</Nav.Link>;
+        const logoutEl= (this.props.activeUser) &&
+        <Nav.Link href="/#/" onClick={this.props.handleLogout}>
             Log out
         </Nav.Link> 
-        : null;
+        
         return (
             <Navbar bg="light" expand="lg" className="mb-3">
                 <Navbar.Brand href="/#/">HOA Systems</Navbar.Brand>
