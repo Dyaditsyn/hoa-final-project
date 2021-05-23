@@ -1,32 +1,32 @@
 
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 class HoaNavbar extends React.Component {
     constructor(props){
         super(props);
-
     }
     render() {
         // tenant/commette member links shown only after authorization
         const menuEl = (this.props.activeUser) ? 
         <Nav variant="primary" className="mr-auto">
-            <Nav.Link href="/#/dashboard">Dashboard</Nav.Link>
-            <Nav.Link href="/#/tenants">Tenants</Nav.Link>
-            <Nav.Link href="/#/messages">Messages</Nav.Link>
-            <Nav.Link href="/#/issues">Issues</Nav.Link>
-            <Nav.Link href="/#/voting">Voting</Nav.Link>
+            <Link component={Nav.Link} to="/dashboard">Dashboard</Link>
+            <Link component={Nav.Link} to="/tenants">Tenants</Link>
+            <Link component={Nav.Link} to="/messages">Messages</Link>
+            <Link component={Nav.Link} to="/issues">Issues</Link>
+            <Link component={Nav.Link} to="/voting">Voting</Link>
         </Nav>
             : null;
         // before authorization shown only navbar brand and login/sigup options
         // after authorization switch to log out
-        const loginEl = ( ! this.props.activeUser) && <Nav.Link href="/#/login">Login</Nav.Link> ;
-        const signupEl = ( ! this.props.activeUser) &&  <Nav.Link href="/#/signup">Sign Up</Nav.Link>;
-        const nameEl = ( this.props.activeUser) &&  <Nav.Link disabled>Hello {this.props.activeUser.name}</Nav.Link>;
+        const loginEl = ( ! this.props.activeUser) && <Link component={Nav.Link} to="/login">Login</Link> ;
+        const signupEl = ( ! this.props.activeUser) &&  <Link component={Nav.Link} to="/signup">Sign Up</Link>;
+        const nameEl = ( this.props.activeUser) &&  <Link component={Nav.Link} disabled>Hello {this.props.activeUser.name}</Link>;
         const logoutEl= (this.props.activeUser) &&
-        <Nav.Link href="/#/" onClick={this.props.handleLogout}>
+        <Link component={Nav.Link} to="/" onClick={this.props.handleLogout}>
             Log out
-        </Nav.Link> 
+        </Link> 
         
         return (
             <Navbar bg="light" expand="lg" className="mb-3">
