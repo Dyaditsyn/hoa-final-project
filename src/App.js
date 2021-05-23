@@ -4,7 +4,7 @@ import './App.css';
 import { HashRouter, Route } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
-import Signup from './pages/Sigup';
+import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Issues from './pages/Issues';
 import Messages from './pages/Messages';
@@ -36,8 +36,6 @@ class App extends React.Component {
     });
   }
 
- 
-
   login = (userObj) => {
     this.setState({
       activeUser: userObj,
@@ -58,7 +56,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <HashRouter>
+      <HashRouter basename="/">
         <Route exact path={["/", "/dashboard", "/issues", "/messages", "/tenants", "/voting"]}>
           <HoaNavbar
             activeUser={this.state.activeUser}

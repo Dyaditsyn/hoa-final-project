@@ -1,40 +1,35 @@
 import React, { Component } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
-export default class AddMessageModal extends Component {
+export default class UpdateMessageModal extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
-            details: '',
-            priority: '',
-            img: ''
+            title: props.messageToUpdate.title || '',
+            details: props.messageToUpdate.details || '',
+            priority: props.messageToUpdate.priority || '',
+            img: props.messageToUpdate.img || ''
         }
     }
 
-    clearFields = () =>  this.setState({
-        title: '',
-        details: '',
-        priority: '',
-        img: ''
-    });
+ 
 
     closeModal = () => {
-        this.clearFields();
-        this.props.handleClose();
+        this.props.onCancel();
     }
 
     saveDetails = () => {
-        this.props.onSave(this.state);
-        this.clearFields();
+        this.props.onUpdate({...this.state, messageId: this.props.messageToUpdate.messageId});
+        this.closeModal();
     }
+
 
     render() {
         return (
-            <Modal show={this.props.isModalOpen} onHide={this.closeModal}>
+            <Modal show={true} onHide={this.closeModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add New Message</Modal.Title>
+                    <Modal.Title>Edit Message</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -91,10 +86,10 @@ export default class AddMessageModal extends Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={this.closeModal}>
-                        Close
+                        Cancel
                 </Button>
                     <Button variant="primary" onClick={this.saveDetails}>
-                        Create
+                        Save Changes
                 </Button>
                 </Modal.Footer>
             </Modal>

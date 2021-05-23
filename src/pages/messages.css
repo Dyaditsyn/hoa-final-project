@@ -1,4 +1,7 @@
-
+.admin-logo{
+    width: 200px;
+    height: 200px;
+}
 
 .priority-icon{
     width: 30px;
@@ -7,4 +10,13 @@
 
 .open-header{
     background-color: aquamarine;
+}
+
+.message-header {
+    cursor: pointer;
+    font-weight:500;
+}
+
+.message-img{
+    max-width: 400px;
 }

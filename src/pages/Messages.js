@@ -2,13 +2,14 @@ import React from 'react';
 import { Accordion, Button, Card } from 'react-bootstrap';
 import MessageSearch from '../components/MessageSearch';
 import messagesJSON from '../data/messages.json';
+import usersJSON from '../data/users.json';
 import { v4 } from 'uuid';
 import './messages.css'
 import AddMessageModal from '../components/AddMessageModal';
 import clsx from 'clsx';
 import infoIcon from '../img/info-icon.png';
 import importantIcon from '../img/important-icon.jpg';
-
+import UpdateMessageModal from '../components/UpdateMessageModal';
 
 const priority_values = { info: 1, important: 2 }
 
@@ -26,7 +27,8 @@ class Messages extends React.Component {
                 sortBy: 'date'
             },
             isModalOpen: false,
-            currentlyOpenCard: null
+            currentlyOpenCard: null,
+            messageToUpdate: null
         }
     }
 
@@ -66,7 +68,9 @@ class Messages extends React.Component {
             });
     }
 
-    saveModalInfo = ({title, details, priority, img}) => {
+    setMessageToUpdate = message => this.setState({ messageToUpdate: message });
+
+    saveModalInfo = ({ title, details, priority, img }) => {
         const newMessage = {
             title,
             details,
@@ -81,10 +85,19 @@ class Messages extends React.Component {
         this.handleClose();
     }
 
+    updateMessage = updatedMessage => {
+       const {messages} = this.state;
+       const messageIndex = messages.findIndex(m => m.messageId === updatedMessage.messageId);
+       messages[messageIndex] = {...messages[messageIndex],...updatedMessage};
+       localStorage.setItem('localMessages', JSON.stringify(messages));
+        this.setState({messages: [...messages]}, this.updateShownMessages)
+       
+    }
+
     deleteMessage = idToDelete => {
         const nextMessages = this.state.messages.filter(m => m.messageId !== idToDelete);
         localStorage.setItem('localMessages', JSON.stringify(nextMessages));
-        this.setState({messages: nextMessages}, this.updateShownMessages)
+        this.setState({ messages: nextMessages }, this.updateShownMessages)
     }
 
     render() {
@@ -95,33 +108,49 @@ class Messages extends React.Component {
             <div className="p-messages">
                 <MessageSearch onSearchParamsUpdate={this.updateSearchParameters} />
                 {this.props.activeUser.role === 'committee' &&
-                    <div className="text-right "><Button variant="link" className="font-weight-bold" onClick={() => { this.setState({ isModalOpen: true }) }}>New Message</Button></div>
+                    <div className="text-right ">
+                        <Button variant="link" className="font-weight-bold" onClick={() => { this.setState({ isModalOpen: true }) }}>New Message</Button>
+                    </div>
                 }
-                <Accordion onSelect={cardId => this.setState({currentlyOpenCard: cardId})} className="mt-2">
+                <Accordion onSelect={cardId => this.setState({ currentlyOpenCard: cardId })} className="mt-2">
                     {this.state.filteredMessages.map(message =>
+
+
                         <Card border="secondary" key={message.messageId}>
-                            <Card.Header className={clsx({'open-header': this.state.currentlyOpenCard === message.messageId}, 'd-flex justify-content-between')}>
-                                <Accordion.Toggle as={Button} variant="link" eventKey={message.messageId}>
-                                    {message.title}
-                                </Accordion.Toggle>
-                                { <img className="priority-icon" src={message.priority === 'info' ? infoIcon : importantIcon}/>}
-                            </Card.Header>
+                            <Accordion.Toggle as={Card.Header} variant="link" eventKey={message.messageId}
+                                className={clsx({ 'open-header': this.state.currentlyOpenCard === message.messageId }, "d-flex justify-content-between message-header")}>
+                                {message.title}
+                                {<img className="priority-icon"
+                                    src={message.priority === 'info' ? infoIcon : importantIcon}
+                                    alt={message.priority === 'info' ? "info-icon" : "important icon"} />}
+                            </Accordion.Toggle>
                             <Accordion.Collapse eventKey={message.messageId}>
-                                <Card.Body>{message.details}
+                                <Card.Body>
+                                    <section className="d-flex">
+                                        <div>
+                                            <div className="d-flex mb-4"><p className="font-weight-bold mr-3">Details: </p>{message.details}</div>
+                                            <div className="d-flex mb-4"><p className="font-weight-bold mr-3">Priority: </p>{message.priority}</div>
+                                        </div>
+                                        <div className="message-img">
+                                            <img src={message.img} />
+                                        </div>
+                                    </section>
+
                                     <div className="d-flex justify-content-end">
                                         {this.props.activeUser.role === 'committee' &&
-                                            <Button onClick={this.updateMessage} className="mr-2" variant="secondary">Update</Button>
+                                            <Button onClick={() => this.setMessageToUpdate(message)} className="mr-2" variant="secondary">Update</Button>
                                         }
                                         {this.props.activeUser.role === 'committee' &&
                                             <Button onClick={() => this.deleteMessage(message.messageId)} className="mr-2" variant="danger">Delete</Button>
                                         }
                                     </div>
+
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>)}
                 </Accordion>
-
-                <AddMessageModal isModalOpen={this.state.isModalOpen} handleClose={this.handleClose} onSave={this.saveModalInfo}/>
+                {this.state.messageToUpdate && <UpdateMessageModal onUpdate={this.updateMessage} messageToUpdate={this.state.messageToUpdate} onCancel={() => this.setMessageToUpdate(null)} /> }
+                <AddMessageModal isModalOpen={this.state.isModalOpen} handleClose={this.handleClose} onSave={this.saveModalInfo} />
             </div>
         )
     }

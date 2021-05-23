@@ -27,7 +27,7 @@ class Login extends React.Component {
         });
         if(foundUser) {
             this.props.login(foundUser);
-            window.location.href = '/#/dashboard';
+            window.location.href = '/#/messages';
         }
         else{
             alert('Incorrect Email or Password');
