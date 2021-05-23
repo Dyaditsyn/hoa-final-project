@@ -13,17 +13,23 @@ export default class UpdateMessageModal extends Component {
         }
     }
 
- 
-
     closeModal = () => {
         this.props.onCancel();
     }
 
     saveDetails = () => {
+        if(this.state.title.trim() === ''){
+            return alert('Message title is required')
+        }
+        if(this.state.details.trim() === ''){
+            return alert('Message details is required')
+        }
+        if(this.state.priority === ''){
+            return alert('Message priority is required')
+        }
         this.props.onUpdate({...this.state, messageId: this.props.messageToUpdate.messageId});
         this.closeModal();
     }
-
 
     render() {
         return (

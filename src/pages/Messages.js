@@ -2,7 +2,6 @@ import React from 'react';
 import { Accordion, Button, Card } from 'react-bootstrap';
 import MessageSearch from '../components/MessageSearch';
 import messagesJSON from '../data/messages.json';
-import usersJSON from '../data/users.json';
 import { v4 } from 'uuid';
 import './messages.css'
 import AddMessageModal from '../components/AddMessageModal';
@@ -130,10 +129,10 @@ class Messages extends React.Component {
                                         <div>
                                             <div className="d-flex mb-4"><p className="font-weight-bold mr-3">Details: </p>{message.details}</div>
                                             <div className="d-flex mb-4"><p className="font-weight-bold mr-3">Priority: </p>{message.priority}</div>
+                                            <img className="message-img" src={message.img} />
                                         </div>
-                                        <div className="message-img">
-                                            <img src={message.img} />
-                                        </div>
+                                            
+                                    
                                     </section>
 
                                     <div className="d-flex justify-content-end">

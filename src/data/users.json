@@ -7,7 +7,6 @@
         "building": "A",
         "adress": "My st., 1",
         "city": "My city",
-        "tel": "0123456789",
         "role": "committee",
         "img": "admin-logo.jpg"
     },
@@ -19,7 +18,6 @@
         "building": "B",
         "adress": "My st., 2",
         "city": "My city",
-        "tel": "0123456789",
         "role": "committee",
         "img": "admin-logo.jpg"
     },
@@ -29,7 +27,6 @@
         "email": "user1@hoa.com",
         "pwd": "abc",
         "apt": "101",
-        "tel": "9876543210",
         "role": "tenant",
         "img": "user-logo.png"
     },
@@ -39,7 +36,6 @@
         "email": "user2@hoa.com",
         "pwd": "def",
         "apt": "102",
-        "tel": "9876543210",
         "role": "tenant",
         "img": "user-logo.png"
     },
@@ -49,7 +45,6 @@
         "email": "user3@hoa.com",
         "pwd": "jhi",
         "apt": "103",
-        "tel": "9876543210",
         "role": "tenant",
         "img": "user-logo.png"
     }

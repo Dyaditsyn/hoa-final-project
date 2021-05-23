@@ -26,6 +26,16 @@ export default class AddMessageModal extends Component {
     }
 
     saveDetails = () => {
+        // TODO bootstrap form validation 
+        if(this.state.title.trim() === ''){
+            return alert('Message title is required')
+        }
+        if(this.state.details.trim() === ''){
+            return alert('Message details is required')
+        }
+        if(this.state.priority === ''){
+            return alert('Message priority is required')
+        }
         this.props.onSave(this.state);
         this.clearFields();
     }

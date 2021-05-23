@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
 
 class Tenants extends React.Component {
     constructor(props){
