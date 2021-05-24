@@ -50,7 +50,8 @@ class Signup extends React.Component {
     render() {
         return (
             <div className="p-signup">
-                <h1>Signup as Committee Member</h1>
+                <h1 className="text-center my-2">Signup as Committee Member</h1>
+                <h4 className="text-center">Create an account to your building</h4>
                 <Form className="mt-5">
 
                     <Form.Group controlId="formBasicName">
@@ -76,7 +77,7 @@ class Signup extends React.Component {
 
                     <Form.Group controlId="formBasicPassword2">
                         <Form.Label column sm={2}>
-                            Re-enter Password*
+                            Password*
                         </Form.Label>
                         <Form.Control type="password" placeholder="Re-enter Password" onChange={(e) => this.setState({ pwd2: e.target.value })} value={this.state.pwd2} />
                     </Form.Group>
@@ -104,7 +105,7 @@ class Signup extends React.Component {
 
                     <Form.Group controlId="formBasicImg">
                         <Form.Label column sm={2}>
-                            Profile photo link
+                            Photo
                         </Form.Label>
                         <Form.Control type="txt" placeholder="Profile photo link" onChange={(e) => this.setState({ img: e.target.value })} value={this.state.img} />
                     </Form.Group>

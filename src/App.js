@@ -56,7 +56,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <HashRouter basename="/">
+      <HashRouter basename="/hoa-final-project">
         <Route exact path={["/", "/dashboard", "/issues", "/messages", "/tenants", "/voting"]}>
           <HoaNavbar
             activeUser={this.state.activeUser}

@@ -30,7 +30,7 @@ class HoaNavbar extends React.Component {
         
         return (
             <Navbar bg="light" expand="lg" className="mb-3">
-                <Navbar.Brand href="/#/">HOA Systems</Navbar.Brand>
+                <Link component={Navbar.Brand} to="/">HOA Systems</Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     {menuEl}
