@@ -101,7 +101,7 @@ class Messages extends React.Component {
 
     render() {
         if (!this.props.activeUser) {
-            return window.location.href = "/#/login";
+            return window.location.href = "#/login";
         }
         return (
             <div className="p-messages">
