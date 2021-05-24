@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/hoa-final-project/static/css/main.5d80871a.chunk.css",
-    "main.js": "/hoa-final-project/static/js/main.e6628efa.chunk.js",
-    "main.js.map": "/hoa-final-project/static/js/main.e6628efa.chunk.js.map",
+    "main.js": "/hoa-final-project/static/js/main.d8c0b6a8.chunk.js",
+    "main.js.map": "/hoa-final-project/static/js/main.d8c0b6a8.chunk.js.map",
     "runtime-main.js": "/hoa-final-project/static/js/runtime-main.89c0840b.js",
     "runtime-main.js.map": "/hoa-final-project/static/js/runtime-main.89c0840b.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/hoa-final-project/static/css/2.4c97ca4f.chunk.css",
@@ -22,6 +22,6 @@
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.895f5ef9.chunk.js",
     "static/css/main.5d80871a.chunk.css",
-    "static/js/main.e6628efa.chunk.js"
+    "static/js/main.d8c0b6a8.chunk.js"
   ]
 }
