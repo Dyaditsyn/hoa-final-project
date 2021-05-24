@@ -49,48 +49,48 @@ class App extends React.Component {
       activeUser: null,
     }, () => {
       localStorage.setItem('loggedInUser', JSON.stringify(null));
-      window.location.href = '#/';
+      window.location.href = '/#/';
     });
 
   }
 
   render() {
     return (
-      <HashRouter basename="#/hoa-final-project">
-        <Route exact path={["#/", "#/dashboard", "#/issues", "#/messages", "#/tenants", "#/voting"]}>
+      <HashRouter basename="/hoa-final-project">
+        <Route exact path={["/", "/dashboard", "/issues", "/messages", "/tenants", "/voting"]}>
           <HoaNavbar
             activeUser={this.state.activeUser}
             handleLogout={this.handleLogout}
           />
         </Route>
         <Container>
-          <Route exact path="#/">
+          <Route exact path="/">
             <Homepage />
           </Route>
-          <Route exact path="#/login">
+          <Route exact path="/login">
             <Login
               allUsers={this.state.allUsers}
               login={this.login} />
           </Route>
-          <Route exact path="#/signup">
+          <Route exact path="/signup">
             <Signup addUser={this.addUser} />
           </Route>
-          <Route exact path="#/dashboard">
+          <Route exact path="/dashboard">
             <Dashboard activeUser={this.state.activeUser} />
           </Route>
-          <Route exact path="#/issues">
+          <Route exact path="/issues">
             <Issues activeUser={this.state.activeUser} />
           </Route>
-          <Route exact path="#/messages">
+          <Route exact path="/messages">
             <Messages
               activeUser={this.state.activeUser} />
           </Route>
-          <Route exact path="#/tenants">
+          <Route exact path="/tenants">
             <Tenants
               activeUser={this.state.activeUser}
               allUsers={this.state.allUsers} />
           </Route>
-          <Route exact path="#/voting">
+          <Route exact path="/voting">
             <Voting activeUser={this.state.activeUser} />
           </Route>
         </Container>
