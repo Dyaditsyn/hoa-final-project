@@ -45,7 +45,7 @@ class Signup extends React.Component {
             city: this.state.city,
         }
         this.props.addUser(newUserObj);
-        window.location.href = '/#/dashboard';
+        window.location.href = '#/dashboard';
     }
     render() {
         return (

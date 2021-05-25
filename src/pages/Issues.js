@@ -6,7 +6,7 @@ class Issues extends React.Component {
     }
     render() {
         if(!this.props.activeUser){
-            window.location.href = "/#/login"
+            window.location.href = "#/login"
         }
         return (
             <div className="p-issues">

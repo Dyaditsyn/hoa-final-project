@@ -49,7 +49,7 @@ class App extends React.Component {
       activeUser: null,
     }, () => {
       localStorage.setItem('loggedInUser', JSON.stringify(null));
-      window.location.href = '/#/';
+      window.location.href = '#/';
     });
 
   }
