@@ -27,7 +27,7 @@ class Login extends React.Component {
         });
         if(foundUser) {
             this.props.login(foundUser);
-            window.location.href = '#/messages';
+            window.location.href = '/#/messages';
         }
         else{
             alert('Incorrect Email or Password');
@@ -61,7 +61,7 @@ class Login extends React.Component {
                         </Col>
                     </Form.Group>
                 </Form>
-                <Link to="#/signup">Sign up</Link>
+                <Link to="/signup">Sign up</Link>
             </div>
         )
     }
