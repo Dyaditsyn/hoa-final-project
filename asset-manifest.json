@@ -1,27 +1,30 @@
 {
   "files": {
-    "main.css": "/hoa-final-project/static/css/main.5d80871a.chunk.css",
-    "main.js": "/hoa-final-project/static/js/main.d8c0b6a8.chunk.js",
-    "main.js.map": "/hoa-final-project/static/js/main.d8c0b6a8.chunk.js.map",
-    "runtime-main.js": "/hoa-final-project/static/js/runtime-main.89c0840b.js",
-    "runtime-main.js.map": "/hoa-final-project/static/js/runtime-main.89c0840b.js.map",
+    "main.css": "/hoa-final-project/static/css/main.546670ba.chunk.css",
+    "main.js": "/hoa-final-project/static/js/main.0efe7125.chunk.js",
+    "main.js.map": "/hoa-final-project/static/js/main.0efe7125.chunk.js.map",
+    "runtime-main.js": "/hoa-final-project/static/js/runtime-main.5175c3ee.js",
+    "runtime-main.js.map": "/hoa-final-project/static/js/runtime-main.5175c3ee.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/hoa-final-project/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.895f5ef9.chunk.js": "/hoa-final-project/static/js/2.895f5ef9.chunk.js",
-    "static/js/2.895f5ef9.chunk.js.map": "/hoa-final-project/static/js/2.895f5ef9.chunk.js.map",
-    "static/js/3.ae64dcfb.chunk.js": "/hoa-final-project/static/js/3.ae64dcfb.chunk.js",
-    "static/js/3.ae64dcfb.chunk.js.map": "/hoa-final-project/static/js/3.ae64dcfb.chunk.js.map",
+    "static/js/2.09e05cb8.chunk.js": "/hoa-final-project/static/js/2.09e05cb8.chunk.js",
+    "static/js/2.09e05cb8.chunk.js.map": "/hoa-final-project/static/js/2.09e05cb8.chunk.js.map",
+    "static/js/3.0a4f8b68.chunk.js": "/hoa-final-project/static/js/3.0a4f8b68.chunk.js",
+    "static/js/3.0a4f8b68.chunk.js.map": "/hoa-final-project/static/js/3.0a4f8b68.chunk.js.map",
     "index.html": "/hoa-final-project/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/hoa-final-project/static/css/2.4c97ca4f.chunk.css.map",
-    "static/css/main.5d80871a.chunk.css.map": "/hoa-final-project/static/css/main.5d80871a.chunk.css.map",
-    "static/js/2.895f5ef9.chunk.js.LICENSE.txt": "/hoa-final-project/static/js/2.895f5ef9.chunk.js.LICENSE.txt",
+    "static/css/main.546670ba.chunk.css.map": "/hoa-final-project/static/css/main.546670ba.chunk.css.map",
+    "static/js/2.09e05cb8.chunk.js.LICENSE.txt": "/hoa-final-project/static/js/2.09e05cb8.chunk.js.LICENSE.txt",
+    "static/media/homepage.css": "/hoa-final-project/static/media/background.c3b5607d.jpg",
+    "static/media/house1.5536559b.jpg": "/hoa-final-project/static/media/house1.5536559b.jpg",
+    "static/media/house3.191404f4.jpg": "/hoa-final-project/static/media/house3.191404f4.jpg",
     "static/media/important-icon.9e1da50b.jpg": "/hoa-final-project/static/media/important-icon.9e1da50b.jpg",
     "static/media/info-icon.79d21f72.png": "/hoa-final-project/static/media/info-icon.79d21f72.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.89c0840b.js",
+    "static/js/runtime-main.5175c3ee.js",
     "static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.895f5ef9.chunk.js",
-    "static/css/main.5d80871a.chunk.css",
-    "static/js/main.d8c0b6a8.chunk.js"
+    "static/js/2.09e05cb8.chunk.js",
+    "static/css/main.546670ba.chunk.css",
+    "static/js/main.0efe7125.chunk.js"
   ]
 }
