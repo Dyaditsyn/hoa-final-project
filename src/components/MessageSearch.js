@@ -27,10 +27,10 @@ class MessageSearch extends React.Component {
 
     render() {
         return (
-            <Row className="mb-5">
+            <Row className="mb-5 ml-2">
                 <Col className="d-flex align-items-center" md={12} lg={7}>
                    
-                        <FormControl 
+                        <FormControl
                         value={this.state.searchQuery} 
                         onChange={this.updateSearchQuery} 
                         className=".search-input" 

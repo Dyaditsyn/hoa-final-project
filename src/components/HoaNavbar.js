@@ -8,7 +8,6 @@ class HoaNavbar extends React.Component {
         super(props);
     }
     render() {
-        // tenant/commette member links shown only after authorization
         const menuEl = (this.props.activeUser) ? 
         <Nav variant="primary" className="mr-auto">
             <Link component={Nav.Link} to="/dashboard">Dashboard</Link>
@@ -18,8 +17,7 @@ class HoaNavbar extends React.Component {
             <Link component={Nav.Link} to="/voting">Voting</Link>
         </Nav>
             : null;
-        // before authorization shown only navbar brand and login/sigup options
-        // after authorization switch to log out
+
         const loginEl = ( ! this.props.activeUser) && <Link component={Nav.Link} to="/login">Login</Link> ;
         const signupEl = ( ! this.props.activeUser) &&  <Link component={Nav.Link} to="/signup">Sign Up</Link>;
         const nameEl = ( this.props.activeUser) &&  <Link component={Nav.Link} disabled>Hello {this.props.activeUser.name}</Link>;
